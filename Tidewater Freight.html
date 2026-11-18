@@ -1,0 +1,547 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tidewater Freight</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: white header, blue hero with live tracking, white services, red routes, blue process, white quote,
+   blue staff desk (editors only), red footer. Container corrugation stripes are the one decorative motif. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F1F5FB;
+  --ink: #0A1F44;
+  --muted: #4B5B78;
+  --line: #D5DDEB;
+  --accent: #D7263D;
+  --on-accent: #FFFFFF;
+  --blue: #0B3D91;
+  --hero-bg: #0B3D91;
+  --hero-ink: #FFFFFF;
+  --hero-muted: #C3D3F0;
+  --ok: #1F7A4D;
+  --red-bg: #C8102E;
+  --font-display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+/* One fixed look in every theme: white, blue and red. No dark variant. */
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.02; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 800; }
+h3 { font-size: 1.45rem; font-weight: 700; }
+.label { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+p { margin: 0; }
+section { padding-block: 56px; }
+.band { margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px))); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band-blue { background: var(--hero-bg); color: #FFFFFF; }
+.band-red { background: var(--red-bg); color: #FFFFFF; }
+.band-blue .label, .band-red .label { color: rgba(255,255,255,0.78); }
+.band-blue .lede, .band-red .lede, .band-blue .note, .band-red .note { color: rgba(255,255,255,0.88); }
+.band-red .table-scroll, .band-blue .table-scroll, .svc, form.quote, .panel { color: var(--ink); }
+.band-blue .process, .band-red .process { border-top-color: #FFFFFF; }
+.band-blue .process .n, .band-red .process .n { color: #FFFFFF; }
+.band-blue .process p, .band-red .process p { color: rgba(255,255,255,0.9); }
+.band-blue nav a { color: rgba(255,255,255,0.85); }
+.band-blue nav a:hover { color: #FFFFFF; }
+.lede { max-width: 62ch; color: var(--muted); margin-top: 12px; }
+
+/* header */
+header.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 16px; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; text-decoration: none; }
+.brand svg { width: 30px; height: 30px; flex: none; }
+nav { display: flex; gap: 18px; flex-wrap: wrap; font-size: 0.95rem; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-ink); margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); position: relative; }
+.hero-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; padding-block: 56px 64px; }
+.hero h1 { font-size: clamp(2.8rem, 8vw, 5.2rem); font-weight: 800; }
+.hero p.sub { color: var(--hero-muted); margin-top: 18px; max-width: 46ch; font-size: 1.05rem; }
+.hero .stats { display: flex; gap: 28px; flex-wrap: wrap; margin-top: 28px; }
+.hero .stats div { font-family: var(--font-mono); font-size: 0.8rem; color: var(--hero-muted); }
+.hero .stats b { display: block; font-family: var(--font-display); font-size: 2rem; color: var(--hero-ink); font-weight: 700; letter-spacing: 0.01em; }
+.stripes { height: 12px; background: repeating-linear-gradient(90deg, var(--accent) 0 24px, #FFFFFF 24px 48px); }
+
+/* tracking card */
+.track { background: var(--bg); color: var(--ink); padding: 22px; border-radius: 0; border-top: 6px solid var(--accent); min-width: 0; }
+.track form { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.track input { flex: 1 1 180px; min-width: 0; font-family: var(--font-mono); font-size: 1rem; padding: 12px 12px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 0; }
+.btn { font-family: var(--font-body); font-weight: 600; font-size: 1rem; padding: 12px 20px; border: 0; border-radius: 0; background: var(--accent); color: var(--on-accent); cursor: pointer; text-transform: uppercase; letter-spacing: 0.04em; }
+.btn:hover { filter: brightness(1.06); }
+.btn:disabled { opacity: 0.6; cursor: default; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); text-transform: none; letter-spacing: 0; }
+.btn.small { padding: 8px 12px; font-size: 0.85rem; }
+.hint { font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+.hint button { font: inherit; font-family: var(--font-mono); color: var(--blue); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+.result { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 16px; }
+.result .head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.status { font-weight: 600; }
+.status.ok { color: var(--ok); }
+.badge { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--surface); border: 1px solid var(--line); padding: 2px 6px; margin-left: 8px; color: var(--muted); }
+.route { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+ol.steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 0; }
+ol.steps li { position: relative; padding: 0 0 14px 28px; font-size: 0.92rem; color: var(--muted); }
+ol.steps li::before { content: ""; position: absolute; left: 5px; top: 5px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--line); background: var(--bg); }
+ol.steps li::after { content: ""; position: absolute; left: 9px; top: 18px; bottom: -3px; width: 2px; background: var(--line); }
+ol.steps li:last-child::after { display: none; }
+ol.steps li.done { color: var(--ink); }
+ol.steps li.done::before { background: var(--blue); border-color: var(--blue); }
+ol.steps li.done::after { background: var(--blue); }
+ol.steps li.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px rgba(215, 38, 61, 0.28); }
+ol.steps li .when { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); display: block; }
+
+/* services */
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 28px; }
+.svc { background: var(--surface); padding: 22px; border-top: 5px solid var(--blue); min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.svc:nth-child(3n+2) { border-top-color: var(--accent); }
+.svc .code { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.1em; }
+.svc p { color: var(--muted); font-size: 0.95rem; }
+
+/* routes table */
+.table-scroll { overflow-x: auto; margin-top: 24px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; }
+th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+tr:last-child td { border-bottom: 0; }
+.note { font-size: 0.85rem; color: var(--muted); margin-top: 12px; }
+
+/* process */
+.process { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0; margin-top: 28px; border-top: 2px solid var(--ink); }
+.process div { padding: 18px 20px 6px 0; min-width: 0; }
+.process .n { font-family: var(--font-display); font-weight: 800; font-size: 2.4rem; color: var(--accent); line-height: 1; }
+.process h3 { margin-top: 6px; font-size: 1.25rem; }
+.process p { color: var(--muted); font-size: 0.93rem; margin-top: 6px; }
+
+/* forms (quote and staff) */
+.quote-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: start; }
+form.quote { background: var(--surface); padding: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; min-width: 0; }
+form.quote .full { grid-column: 1 / -1; }
+form.quote label { display: grid; gap: 6px; font-size: 0.85rem; font-weight: 500; min-width: 0; }
+form.quote input, form.quote select, form.quote textarea { font: inherit; font-size: 1rem; padding: 11px 12px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 0; width: 100%; min-width: 0; }
+.summary { grid-column: 1 / -1; border: 1.5px dashed var(--line); background: var(--bg); padding: 14px; font-family: var(--font-mono); font-size: 0.82rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.msg { font-size: 0.88rem; font-weight: 500; }
+.msg.err { color: var(--accent); }
+.msg.good { color: var(--ok); }
+
+/* staff desk */
+.staff-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 24px; margin-top: 28px; align-items: start; }
+.panel { background: var(--surface); padding: 20px; min-width: 0; }
+.panel h3 { font-size: 1.3rem; margin-bottom: 12px; }
+.rows { display: grid; gap: 10px; }
+.row { display: flex; gap: 12px; justify-content: space-between; align-items: center; flex-wrap: wrap; padding: 12px 14px; background: var(--bg); border: 1px solid var(--line); min-width: 0; }
+.row .txt { min-width: 0; overflow-wrap: anywhere; font-size: 0.9rem; }
+.row .txt b { font-family: var(--font-mono); font-weight: 500; display: block; }
+.row .txt span { color: var(--muted); }
+.empty { color: var(--muted); font-size: 0.92rem; padding: 6px 0; }
+
+/* footer */
+footer { padding-block: 44px 52px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; font-size: 0.93rem; color: rgba(255,255,255,0.88); }
+footer b { color: #FFFFFF; display: block; margin-bottom: 4px; font-family: var(--font-display); font-size: 1.25rem; text-transform: uppercase; }
+.copy-line { font-family: var(--font-mono); font-size: 0.88rem; color: #FFFFFF; }
+
+@media (max-width: 820px) {
+  .hero-inner, .quote-grid, .staff-grid { grid-template-columns: 1fr; gap: 28px; }
+  form.quote { grid-template-columns: 1fr; }
+  section { padding-block: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="band"><header class="top wrap">
+  <a class="brand" href="#top" aria-label="Tidewater Freight home">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="9" width="28" height="18" rx="1" fill="var(--blue)"/><path d="M8 9v18M13 9v18M18 9v18M23 9v18" stroke="var(--bg)" stroke-width="1.5"/><rect x="2" y="5" width="28" height="3" fill="var(--accent)"/></svg>
+    Tidewater Freight
+  </a>
+  <nav aria-label="Main">
+    <a href="#services">Services</a>
+    <a href="#routes">Routes</a>
+    <a href="#process">How it works</a>
+    <a href="#quote">Get a quote</a>
+    <a href="#contact">Contact</a>
+    <a href="#staff" id="nav-staff" hidden>Staff desk</a>
+  </nav>
+</header></div>
+
+<div class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="label" style="color:var(--hero-muted)">Ocean · Air · Road · Customs</p>
+      <h1 style="margin-top:12px">Your cargo, from the dock to the door.</h1>
+      <p class="sub">We book the vessel, clear the paperwork and deliver the container. You get one point of contact and a tracking number you can check any time.</p>
+      <div class="stats">
+        <div><b>40+</b>ports served</div>
+        <div><b>20' &amp; 40'</b>containers, FCL and LCL</div>
+        <div><b>24/7</b>shipment desk</div>
+      </div>
+    </div>
+
+    <div class="track" aria-labelledby="track-title">
+      <h2 id="track-title" style="font-size:1.7rem">Track a shipment</h2>
+      <form id="track-form" autocomplete="off">
+        <label for="track-id" class="label" style="width:100%">Container or booking number</label>
+        <input id="track-id" name="id" value="TWFU 482913 7" inputmode="text" spellcheck="false" aria-describedby="track-hint">
+        <button class="btn" type="submit">Track</button>
+      </form>
+      <p class="hint" id="track-hint">Sample numbers: <button type="button" data-fill="TWFU 482913 7">TWFU 482913 7</button> or <button type="button" data-fill="TWFU 110026 4">TWFU 110026 4</button></p>
+      <div class="result" id="track-result" aria-live="polite"><p class="hint">Checking the shipment records…</p></div>
+    </div>
+  </div>
+  <div class="stripes" aria-hidden="true"></div>
+</div>
+
+<main>
+  <section class="band" id="services"><div class="wrap">
+    <p class="label">What we move</p>
+    <h2 style="margin-top:8px">Services</h2>
+    <p class="lede">Pick one service or let us run the whole move. Every shipment gets a named handler and a booking number from day one.</p>
+    <div class="services">
+      <article class="svc"><span class="code">OCEAN / FCL</span><h3>Full container loads</h3><p>A 20ft or 40ft container for your cargo alone. Sealed at your warehouse, opened at the consignee's.</p></article>
+      <article class="svc"><span class="code">OCEAN / LCL</span><h3>Shared containers</h3><p>Ship a few pallets without paying for a whole box. Charged by cubic metre or weight, whichever is higher.</p></article>
+      <article class="svc"><span class="code">AIR</span><h3>Air freight</h3><p>For urgent, high-value or perishable cargo. Door-to-airport or door-to-door, with flight updates.</p></article>
+      <article class="svc"><span class="code">ROAD</span><h3>Inland haulage</h3><p>Trucks to and from the port, plus cross-country delivery on flatbeds, tippers and refrigerated trailers.</p></article>
+      <article class="svc"><span class="code">CUSTOMS</span><h3>Customs clearance</h3><p>We prepare declarations, check HS codes and handle duty payment so cargo is not held at the terminal.</p></article>
+      <article class="svc"><span class="code">STORE</span><h3>Warehousing</h3><p>Bonded and open storage near the port. Short stays while you wait for papers, or longer for stock.</p></article>
+    </div>
+  </div></section>
+
+  <section class="band band-red" id="routes"><div class="wrap">
+    <p class="label">Sample transit times</p>
+    <h2 style="margin-top:8px">Popular routes</h2>
+    <p class="lede">Port-to-port ocean times for a standard 40ft container. Door-to-door adds inland haulage and customs.</p>
+    <div class="table-scroll" tabindex="0" role="region" aria-label="Sample routes table">
+      <table>
+        <thead><tr><th>From</th><th>To</th><th class="num">Ocean days</th><th>Sailings</th></tr></thead>
+        <tbody>
+          <tr><td>Lagos (Apapa)</td><td>Rotterdam, NL</td><td class="num">22–26</td><td>Weekly</td></tr>
+          <tr><td>Lagos (Apapa)</td><td>Shanghai, CN</td><td class="num">38–45</td><td>Weekly</td></tr>
+          <tr><td>Lagos (Tin Can)</td><td>Houston, US</td><td class="num">30–36</td><td>Fortnightly</td></tr>
+          <tr><td>Tema, GH</td><td>Antwerp, BE</td><td class="num">20–24</td><td>Weekly</td></tr>
+          <tr><td>Mombasa, KE</td><td>Dubai (Jebel Ali), AE</td><td class="num">10–14</td><td>Weekly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Times are examples for this template. Replace them with your own sailing schedule.</p>
+  </div></section>
+
+  <section class="band band-blue" id="process"><div class="wrap">
+    <p class="label">From booking to delivery</p>
+    <h2 style="margin-top:8px">How a shipment moves</h2>
+    <div class="process">
+      <div><span class="n">1</span><h3>Book</h3><p>Send us the cargo details. We confirm space on a vessel and share the booking number.</p></div>
+      <div><span class="n">2</span><h3>Collect and load</h3><p>A truck picks up the container or your pallets and takes them to the port.</p></div>
+      <div><span class="n">3</span><h3>Sail and clear</h3><p>The vessel departs. We file the bill of lading and customs entries while it is at sea.</p></div>
+      <div><span class="n">4</span><h3>Deliver</h3><p>The container is released at the destination port and trucked to the consignee.</p></div>
+    </div>
+  </div></section>
+
+  <section class="band" id="quote"><div class="wrap">
+    <div class="quote-grid">
+      <div>
+        <p class="label">Quotes</p>
+        <h2 style="margin-top:8px">Ask for a price</h2>
+        <p class="lede">Tell us what you are shipping and where. Send the request to our sales desk and we will reply with a price and the next sailing.</p>
+      </div>
+      <form class="quote" id="quote-form" novalidate>
+        <label>From (port or city)<input id="q-from" required value="Lagos, NG"></label>
+        <label>To (port or city)<input id="q-to" required value="Rotterdam, NL"></label>
+        <label>Service
+          <select id="q-service">
+            <option>Ocean FCL</option><option>Ocean LCL</option><option>Air freight</option><option>Road haulage</option>
+          </select>
+        </label>
+        <label>Container size
+          <select id="q-size">
+            <option>20 ft</option><option selected>40 ft</option><option>40 ft high cube</option><option>Not applicable</option>
+          </select>
+        </label>
+        <label>Cargo weight (kg)<input id="q-weight" type="number" min="1" value="12000"></label>
+        <label>Ready date<input id="q-date" type="date"></label>
+        <label class="full">What are you shipping?<textarea id="q-cargo" rows="3">Cocoa beans in 60 kg jute bags</textarea></label>
+        <div class="full actions"><button class="btn" type="submit" id="q-send">Send request</button><span class="msg" id="q-msg" role="status"></span></div>
+        <div class="summary" id="q-summary" hidden></div>
+        <div class="full actions" id="q-copy-row" hidden><button class="btn ghost" type="button" id="q-copy">Copy summary</button><span class="hint" id="q-copy-msg" role="status"></span></div>
+      </form>
+    </div>
+  </div></section>
+
+  <section class="band band-blue" id="staff" hidden><div class="wrap">
+    <p class="label">For our team only</p>
+    <h2 style="margin-top:8px">Staff desk</h2>
+    <p class="lede">Add a container, move it to its next stage, and read incoming quote requests. Customers see changes on the tracking box straight away.</p>
+    <div class="staff-grid">
+      <div class="panel">
+        <h3>Add or update a shipment</h3>
+        <form class="quote" id="staff-form" novalidate style="padding:0; background:transparent">
+          <label class="full">Container or booking number<input id="s-number" placeholder="TWFU 123456 7" spellcheck="false"></label>
+          <label>From<input id="s-from" placeholder="Lagos (Apapa)"></label>
+          <label>To<input id="s-to" placeholder="Rotterdam, NL"></label>
+          <label>Expected arrival<input id="s-eta" type="date"></label>
+          <label>Current stage<select id="s-stage"></select></label>
+          <label class="full">Location note (optional)<input id="s-note" placeholder="Gulf of Guinea"></label>
+          <div class="full actions"><button class="btn" type="submit" id="s-save">Save shipment</button><button class="btn ghost" type="button" id="s-clear">Clear form</button><span class="msg" id="s-msg" role="status"></span></div>
+        </form>
+      </div>
+      <div style="display:grid; gap:24px; min-width:0">
+        <div class="panel"><h3>Shipments</h3><div class="rows" id="s-list"><p class="empty">Loading…</p></div></div>
+        <div class="panel"><h3>Quote requests</h3><div class="rows" id="s-quotes"><p class="empty">Loading…</p></div></div>
+      </div>
+    </div>
+  </div></section>
+</main>
+
+<div class="band band-red"><div class="wrap">
+  <footer id="contact">
+    <div><b>Tidewater Freight</b>Sea, air and road freight with customs handled in-house. Replace this name, logo and the details below with your own.</div>
+    <div><b>Shipment desk</b><span class="copy-line">+000 000 000 0000</span><br><span class="copy-line">desk@yourcompany.example</span></div>
+    <div><b>Head office</b>Plot 0, Port Road<br>Your City, Your Country<br>Mon–Sat, 8am–6pm</div>
+  </footer>
+</div></div>
+
+<script>
+(function () {
+  var STAGES = ["Booking confirmed", "Gated in at origin port", "Loaded on vessel", "At sea", "Arrived at destination port", "Customs cleared", "Delivered"];
+  var SAMPLES = {
+    "TWFU4829137": { number: "TWFU4829137", from: "Lagos (Apapa)", to: "Rotterdam, NL", eta: "2026-11-14", stage: 3, note: "Gulf of Guinea", sample: true,
+      times: { "0": "2026-10-02T09:14:00+01:00", "1": "2026-10-06T16:40:00+01:00", "2": "2026-10-09T03:20:00+01:00", "3": "2026-10-12T08:00:00+01:00" } },
+    "TWFU1100264": { number: "TWFU1100264", from: "Tema, GH", to: "Antwerp, BE", eta: "2026-09-18", stage: 6, note: "", sample: true,
+      times: { "0": "2026-08-14T11:02:00+01:00", "1": "2026-08-19T08:15:00+01:00", "2": "2026-08-22T21:30:00+01:00", "3": "2026-08-25T06:00:00+01:00", "4": "2026-09-12T06:45:00+01:00", "5": "2026-09-15T14:10:00+01:00", "6": "2026-09-18T10:25:00+01:00" } }
+  };
+
+  var dbNs = null, userNs = null, canStaff = false;
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function norm(s) { return String(s || "").replace(/[^A-Za-z0-9]/g, "").toUpperCase(); }
+  function pretty(n) { return /^[A-Z]{4}[0-9]{7}$/.test(n) ? n.slice(0, 4) + " " + n.slice(4, 10) + " " + n.slice(10) : n; }
+  function fmtDate(iso) {
+    var d = new Date(iso + (String(iso).length === 10 ? "T12:00:00" : ""));
+    return isNaN(d) ? "" : d.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+  }
+  function fmtTime(iso) {
+    var d = new Date(iso);
+    return isNaN(d) ? "" : d.toLocaleString("en-GB", { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  }
+
+  /* ---------- tracking ---------- */
+  var out = $("track-result");
+  function render(d, sample) {
+    var stage = Math.max(0, Math.min(STAGES.length - 1, Number(d.stage) || 0));
+    var times = d.times || {};
+    var delivered = stage === STAGES.length - 1;
+    var items = STAGES.map(function (label, i) {
+      var cls = i < stage ? "done" : (i === stage ? "done now" : "");
+      var when = "";
+      if (times[i]) when = fmtTime(times[i]);
+      else if (i > stage) when = (i === 4 && d.eta) ? "Expected " + fmtDate(d.eta) : "Pending";
+      if (i === stage && d.note) when = (when ? when + " · " : "") + d.note;
+      return '<li class="' + cls + '">' + esc(label) + (when ? '<span class="when">' + esc(when) + "</span>" : "") + "</li>";
+    }).join("");
+    var etaLine = delivered ? "Delivered" : (d.eta ? "Expected arrival " + fmtDate(d.eta) : "");
+    out.innerHTML =
+      '<div class="head"><span class="label">' + esc(pretty(d.number)) + (sample ? '<span class="badge">Sample</span>' : "") + '</span><span class="status ok">' + esc(delivered ? "Delivered" : "In progress · " + STAGES[stage]) + "</span></div>" +
+      '<div class="route">' + esc(d.from) + " → " + esc(d.to) + "</div>" +
+      (etaLine ? '<p class="hint" style="margin-top:2px">' + esc(etaLine) + "</p>" : "") +
+      '<ol class="steps">' + items + "</ol>";
+  }
+  function notFound(raw, extra) {
+    out.innerHTML = '<p class="status">No shipment found for <span style="font-family:var(--font-mono)">' + esc(raw) + "</span>.</p>" +
+      '<p class="hint">Check the number on your bill of lading. ' + esc(extra || "If it was booked in the last few hours, it may not be on the system yet.") + "</p>";
+  }
+  async function lookup(raw) {
+    var key = norm(raw);
+    if (key.length < 6) { out.innerHTML = '<p class="status">Enter a container or booking number.</p>'; return; }
+    if (dbNs) {
+      try {
+        var snap = await dbNs.doc("shipments/" + key).get();
+        if (snap.exists) { var d = snap.data(); render(d, !!d.sample); return; }
+        notFound(raw); return;
+      } catch (e) { /* fall through to samples */ }
+    }
+    if (SAMPLES[key]) { render(SAMPLES[key], true); return; }
+    notFound(raw, "Live records could not be reached from this page, so only the two sample numbers work here.");
+  }
+  $("track-form").addEventListener("submit", function (e) { e.preventDefault(); lookup($("track-id").value); });
+  document.querySelectorAll("[data-fill]").forEach(function (b) {
+    b.addEventListener("click", function () { $("track-id").value = b.getAttribute("data-fill"); lookup(b.getAttribute("data-fill")); });
+  });
+
+  /* ---------- quote form ---------- */
+  var dateEl = $("q-date");
+  var d0 = new Date(); d0.setDate(d0.getDate() + 14);
+  dateEl.value = d0.toISOString().slice(0, 10);
+  dateEl.min = new Date().toISOString().slice(0, 10);
+  function val(id) { return $(id).value.trim(); }
+  var qText = "";
+  function showCopy(text, note) {
+    var sum = $("q-summary");
+    sum.textContent = text; sum.hidden = false; $("q-copy-row").hidden = false; $("q-copy-msg").textContent = note || "";
+  }
+  $("quote-form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var msg = $("q-msg"), btn = $("q-send");
+    msg.className = "msg"; msg.textContent = "";
+    if (!val("q-from") || !val("q-to")) { msg.className = "msg err"; msg.textContent = "Add where the cargo starts and where it is going."; return; }
+    var rec = {
+      from: val("q-from"), to: val("q-to"), service: val("q-service"), size: val("q-size"),
+      weight: Number(val("q-weight")) || 0, ready: val("q-date"), cargo: val("q-cargo"),
+      createdAt: new Date().toISOString(), status: "new"
+    };
+    qText = "Quote request\nRoute: " + rec.from + " to " + rec.to + "\nService: " + rec.service +
+      (rec.size !== "Not applicable" ? " (" + rec.size + ")" : "") + "\nWeight: " + (rec.weight || "not given") + " kg\nReady date: " +
+      (rec.ready || "flexible") + "\nCargo: " + (rec.cargo || "not given");
+    btn.disabled = true;
+    try {
+      if (!dbNs) throw new Error("no db");
+      var ref = await dbNs.collection("quotes").add(rec);
+      msg.className = "msg good";
+      msg.textContent = "Request sent. Your reference is Q-" + ref.id.slice(0, 6).toUpperCase() + ".";
+      $("q-summary").hidden = true; $("q-copy-row").hidden = true;
+    } catch (err) {
+      msg.className = "msg err";
+      msg.textContent = "We could not send this from here. Copy the summary below and send it to the shipment desk.";
+      showCopy(qText, "");
+    }
+    btn.disabled = false;
+  });
+  $("q-copy").addEventListener("click", function () {
+    var sum = $("q-summary"), note = $("q-copy-msg");
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(sum);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      note.textContent = "Selected. Use your device's copy option.";
+    }
+    try { navigator.clipboard.writeText(qText).then(function () { note.textContent = "Copied."; }, fallback); } catch (err) { fallback(); }
+  });
+
+  /* ---------- staff desk ---------- */
+  function setupStaff() {
+    $("staff").hidden = false; $("nav-staff").hidden = false;
+    var sel = $("s-stage");
+    STAGES.forEach(function (s, i) { var o = document.createElement("option"); o.value = i; o.textContent = s; sel.appendChild(o); });
+    var smsg = $("s-msg"), sbtn = $("s-save");
+    function flash(text, cls) { smsg.className = "msg " + (cls || ""); smsg.textContent = text; }
+    function clearForm() {
+      ["s-number", "s-from", "s-to", "s-eta", "s-note"].forEach(function (id) { $(id).value = ""; });
+      sel.value = "0"; $("s-number").readOnly = false; flash("");
+    }
+    $("s-clear").addEventListener("click", clearForm);
+
+    $("staff-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var key = norm($("s-number").value);
+      if (key.length < 6) { flash("Enter a container or booking number (at least 6 characters).", "err"); return; }
+      if (!val("s-from") || !val("s-to")) { flash("Add the origin and destination.", "err"); return; }
+      sbtn.disabled = true; flash("Saving…");
+      try {
+        var ref = dbNs.doc("shipments/" + key);
+        var snap = await ref.get();
+        var old = snap.exists ? snap.data() : {};
+        var times = Object.assign({}, old.times || {});
+        var st = Number(sel.value);
+        if (!times[st]) times[st] = new Date().toISOString();
+        await ref.set({
+          number: key, from: val("s-from"), to: val("s-to"), eta: $("s-eta").value || "", stage: st,
+          note: val("s-note"), times: times, updatedAt: new Date().toISOString()
+        });
+        flash("Saved " + pretty(key) + ".", "good");
+        if (norm($("track-id").value) === key) lookup(key);
+      } catch (err) {
+        flash("Could not save. Your account may not be allowed to edit shipments.", "err");
+      }
+      sbtn.disabled = false;
+    });
+
+    function twoStep(btn, action) {
+      var armed = false, t = null;
+      btn.addEventListener("click", function () {
+        if (!armed) {
+          armed = true; btn.textContent = "Tap again to remove";
+          t = setTimeout(function () { armed = false; btn.textContent = "Remove"; }, 4000);
+          return;
+        }
+        clearTimeout(t); btn.disabled = true; action();
+      });
+    }
+    function mkBtn(label, cls) { var b = document.createElement("button"); b.type = "button"; b.className = "btn small " + (cls || "ghost"); b.textContent = label; return b; }
+
+    var sl = $("s-list");
+    dbNs.collection("shipments").orderBy("updatedAt", "desc").limit(200).onSnapshot(function (snap) {
+      sl.textContent = "";
+      if (snap.empty) { var p = document.createElement("p"); p.className = "empty"; p.textContent = "No shipments yet. Add the first one with the form."; sl.appendChild(p); return; }
+      snap.docs.forEach(function (doc) {
+        var d = doc.data();
+        var row = document.createElement("div"); row.className = "row";
+        var txt = document.createElement("div"); txt.className = "txt";
+        var b = document.createElement("b"); b.textContent = pretty(d.number || doc.id) + (d.sample ? "  (sample)" : "");
+        var sp = document.createElement("span"); sp.textContent = (d.from || "") + " → " + (d.to || "") + " · " + (STAGES[Number(d.stage)] || "");
+        txt.appendChild(b); txt.appendChild(sp);
+        var acts = document.createElement("div"); acts.className = "actions";
+        var edit = mkBtn("Edit");
+        edit.addEventListener("click", function () {
+          $("s-number").value = d.number || doc.id; $("s-from").value = d.from || ""; $("s-to").value = d.to || "";
+          $("s-eta").value = d.eta || ""; sel.value = String(Number(d.stage) || 0); $("s-note").value = d.note || "";
+          flash("Editing " + pretty(d.number || doc.id) + ". Change the stage and save.");
+          $("staff-form").scrollIntoView({ block: "nearest" });
+        });
+        var rm = mkBtn("Remove");
+        twoStep(rm, function () { doc && dbNs.doc("shipments/" + doc.id).delete().catch(function () { rm.disabled = false; rm.textContent = "Remove"; }); });
+        acts.appendChild(edit); acts.appendChild(rm);
+        row.appendChild(txt); row.appendChild(acts); sl.appendChild(row);
+      });
+    }, function () { sl.textContent = "Could not load shipments."; });
+
+    var sq = $("s-quotes");
+    dbNs.collection("quotes").orderBy("createdAt", "desc").limit(100).onSnapshot(function (snap) {
+      sq.textContent = "";
+      if (snap.empty) { var p = document.createElement("p"); p.className = "empty"; p.textContent = "No quote requests yet."; sq.appendChild(p); return; }
+      snap.docs.forEach(function (doc) {
+        var d = doc.data();
+        var row = document.createElement("div"); row.className = "row";
+        var txt = document.createElement("div"); txt.className = "txt";
+        var b = document.createElement("b"); b.textContent = "Q-" + doc.id.slice(0, 6).toUpperCase() + (d.status === "handled" ? "  (handled)" : "");
+        var sp = document.createElement("span");
+        sp.textContent = (d.from || "") + " → " + (d.to || "") + " · " + (d.service || "") + (d.size && d.size !== "Not applicable" ? " " + d.size : "") +
+          " · " + (d.weight || "?") + " kg · ready " + (d.ready || "flexible") + " · " + (d.cargo || "");
+        txt.appendChild(b); txt.appendChild(sp);
+        var acts = document.createElement("div"); acts.className = "actions";
+        if (d.status !== "handled") {
+          var done = mkBtn("Mark handled");
+          done.addEventListener("click", function () { done.disabled = true; dbNs.doc("quotes/" + doc.id).update({ status: "handled" }).catch(function () { done.disabled = false; }); });
+          acts.appendChild(done);
+        }
+        var rm = mkBtn("Remove");
+        twoStep(rm, function () { dbNs.doc("quotes/" + doc.id).delete().catch(function () { rm.disabled = false; rm.textContent = "Remove"; }); });
+        acts.appendChild(rm);
+        row.appendChild(txt); row.appendChild(acts); sq.appendChild(row);
+      });
+    }, function () { sq.textContent = "Could not load quote requests."; });
+  }
+
+  /* ---------- start ---------- */
+  var cl = window.claude;
+  var ready = (cl && cl.use)
+    ? Promise.all([cl.use("db").catch(function () { return null; }), cl.use("user").catch(function () { return null; })])
+    : Promise.resolve([null, null]);
+  ready.then(function (r) {
+    dbNs = r[0]; userNs = r[1];
+    return userNs ? userNs.canEdit() : false;
+  }).then(function (ce) {
+    canStaff = !!ce;
+    if (canStaff && dbNs) setupStaff();
+    lookup($("track-id").value);
+  }).catch(function () { lookup($("track-id").value); });
+})();
+</script>
+
+</body></html>
